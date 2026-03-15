@@ -1,0 +1,71 @@
+{
+  "seo": {
+    "title": "kadabra — Custom software engineering",
+    "description": "We build custom software: web, mobile, and desktop applications. Engineering focused on delivery, quality, and scalability."
+  },
+  "nav": {
+    "brand": "kadabra",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Custom software engineering.",
+    "subheadline": "We build web, mobile, and desktop apps focused on quality, continuous delivery, and maintainability.",
+    "primaryCta": {
+      "label": "View portfolio",
+      "href": "/en/portfolio"
+    },
+    "secondaryCta": {
+      "label": "Contact",
+      "href": "/en/contact"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "items": [
+      {
+        "title": "Custom software",
+        "description": "Architecture, APIs, integrations, and automation.",
+        "href": "/en/services/custom-software"
+      },
+      {
+        "title": "Web applications",
+        "description": "Fast, secure experiences built to grow.",
+        "href": "/en/services/web"
+      },
+      {
+        "title": "Mobile apps",
+        "description": "Android/iOS with a focus on UX, performance, and stability.",
+        "href": "/en/services/mobile"
+      },
+      {
+        "title": "Desktop applications",
+        "description": "Internal tools and cross-platform products for teams.",
+        "href": "/en/services/desktop"
+      }
+    ]
+  },
+  "engineering": {
+    "title": "How we build",
+    "subtitle": "Practices to ship fast without sacrificing quality.",
+    "items": [
+      {
+        "title": "Testing",
+        "description": "Unit/integration tests to reduce regressions."
+      },
+      {
+        "title": "Code review",
+        "description": "Reviews to improve quality, consistency, and security."
+      },
+      {
+        "title": "CI/CD",
+        "description": "Automated builds and deploys to iterate quickly."
+      },
+      {
+        "title": "Observability",
+        "description": "Logs and monitoring to catch issues early."
+      }
+    ]
+  }
+}

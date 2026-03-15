@@ -1,0 +1,33 @@
+---
+const label = "Cambiar tema";
+---
+
+<button
+    type="button"
+    aria-label={label}
+    class="rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted)
+         hover:bg-(--surface-2) hover:text-(--text)
+         focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
+    data-theme-toggle
+>
+    Tema
+</button>
+
+<script is:inline>
+    (() => {
+        const STORAGE_KEY = "kadabra.theme";
+        const btn = document.querySelector("[data-theme-toggle]");
+        if (!btn) return;
+
+        const getTheme = () => document.documentElement.dataset.theme || "dark";
+        const setTheme = (t) => {
+            document.documentElement.dataset.theme = t;
+            localStorage.setItem(STORAGE_KEY, t);
+        };
+
+        btn.addEventListener("click", () => {
+            const next = getTheme() === "dark" ? "light" : "dark";
+            setTheme(next);
+        });
+    })();
+</script>

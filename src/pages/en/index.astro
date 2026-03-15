@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../../layouts/base-layout.astro";
+import SiteHeader from "../../components/site-header.astro";
+import home from "../../data/home.en.json";
+---
+
+<BaseLayout title={home.seo.title} description={home.seo.description} lang="en">
+    <main class="mx-auto max-w-6xl px-6 py-10">
+        <SiteHeader locale="en" nav={home.nav} />
+
+        <section class="mt-14">
+            <h1 class="text-4xl font-semibold tracking-tight md:text-6xl">
+                {home.hero.headline}
+            </h1>
+            <p class="mt-4 max-w-2xl text-lg text-(--muted)">
+                {home.hero.subheadline}
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a
+                    class="rounded-lg bg-(--accent) px-4 py-2 text-sm font-medium text-(--kd-black)
+                 hover:bg-(--accent-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
+                    href={home.hero.primaryCta.href}
+                >
+                    {home.hero.primaryCta.label}
+                </a>
+
+                <a
+                    class="rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-medium
+                 hover:bg-(--surface-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/30"
+                    href={home.hero.secondaryCta.href}
+                >
+                    {home.hero.secondaryCta.label}
+                </a>
+            </div>
+        </section>
+
+        <section class="mt-16">
+            <h2 class="text-xl font-semibold">{home.services.title}</h2>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                {
+                    home.services.items.map((s) => (
+                        <a
+                            href={s.href}
+                            class="rounded-xl border border-(--border) bg-(--surface) p-6 hover:bg-(--surface-2)"
+                        >
+                            <div class="text-base font-semibold">{s.title}</div>
+                            <p class="mt-2 text-sm text-(--muted)">
+                                {s.description}
+                            </p>
+                        </a>
+                    ))
+                }
+            </div>
+        </section>
+
+        <section class="mt-16">
+            <h2 class="text-xl font-semibold">{home.engineering.title}</h2>
+            <p class="mt-2 text-sm text-(--muted)">
+                {home.engineering.subtitle}
+            </p>
+
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+                {
+                    home.engineering.items.map((i) => (
+                        <div class="rounded-xl border border-(--border) bg-(--surface) p-6">
+                            <div class="text-base font-semibold">{i.title}</div>
+                            <p class="mt-2 text-sm text-(--muted)">
+                                {i.description}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+
+        <footer
+            class="mt-20 border-t border-(--border) pt-8 text-sm text-(--muted)"
+        >
+            © {new Date().getFullYear()} Kadabra Company
+        </footer>
+    </main>
+</BaseLayout>

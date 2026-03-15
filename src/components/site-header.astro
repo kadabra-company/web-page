@@ -1,0 +1,46 @@
+---
+import ThemeToggle from "./theme-toggle.astro";
+
+const { locale = "es", nav } = Astro.props;
+
+const otherLocale = locale === "es" ? "en" : "es";
+const otherHref = otherLocale === "es" ? "/es" : "/en";
+---
+
+<header class="flex items-center justify-between">
+    <a
+        class="text-lg font-semibold tracking-tight"
+        href={locale === "es" ? "/es" : "/en"}
+    >
+        {nav.brand}
+    </a>
+
+    <div class="flex items-center gap-3">
+        <nav class="hidden items-center gap-4 text-sm md:flex">
+            <a
+                class="text-(--muted) hover:text-(--text)"
+                href={locale === "es" ? "/es/servicios" : "/en/services"}
+                >{nav.services}</a
+            >
+            <a
+                class="text-(--muted) hover:text-(--text)"
+                href={locale === "es" ? "/es/portafolio" : "/en/portfolio"}
+                >{nav.portfolio}</a
+            >
+            <a
+                class="text-(--muted) hover:text-(--text)"
+                href={locale === "es" ? "/es/contacto" : "/en/contact"}
+                >{nav.contact}</a
+            >
+        </nav>
+
+        <a
+            class="rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted) hover:bg-(--surface-2) hover:text-(--text)"
+            href={otherHref}
+        >
+            {otherLocale.toUpperCase()}
+        </a>
+
+        <ThemeToggle />
+    </div>
+</header>

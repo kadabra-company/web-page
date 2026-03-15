@@ -1,0 +1,71 @@
+{
+  "seo": {
+    "title": "kadabra — Ingeniería de software a medida",
+    "description": "Construimos software a medida: aplicaciones web, móviles y de escritorio. Ingeniería enfocada en entrega, calidad y escalabilidad."
+  },
+  "nav": {
+    "brand": "kadabra",
+    "services": "Servicios",
+    "portfolio": "Portafolio",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "headline": "Ingeniería de software a medida.",
+    "subheadline": "Construimos aplicaciones web, mobile y desktop con foco en calidad, entrega continua y mantenimiento.",
+    "primaryCta": {
+      "label": "Ver portafolio",
+      "href": "/es/portafolio"
+    },
+    "secondaryCta": {
+      "label": "Contactar",
+      "href": "/es/contacto"
+    }
+  },
+  "services": {
+    "title": "Servicios",
+    "items": [
+      {
+        "title": "Software a medida",
+        "description": "Arquitectura, APIs, integraciones y automatización.",
+        "href": "/es/servicios/software-a-medida"
+      },
+      {
+        "title": "Aplicaciones Web",
+        "description": "Frontends rápidos, seguros y listos para crecer.",
+        "href": "/es/servicios/web"
+      },
+      {
+        "title": "Apps Móviles",
+        "description": "Android/iOS con foco en UX, performance y estabilidad.",
+        "href": "/es/servicios/mobile"
+      },
+      {
+        "title": "Aplicaciones de Escritorio",
+        "description": "Herramientas internas y productos multiplataforma.",
+        "href": "/es/servicios/desktop"
+      }
+    ]
+  },
+  "engineering": {
+    "title": "Cómo construimos",
+    "subtitle": "Prácticas para entregar con velocidad sin sacrificar calidad.",
+    "items": [
+      {
+        "title": "Testing",
+        "description": "Unit/integration tests para reducir regresiones."
+      },
+      {
+        "title": "Code review",
+        "description": "Revisiones para mejorar calidad, consistencia y seguridad."
+      },
+      {
+        "title": "CI/CD",
+        "description": "Builds y despliegues automatizados para iterar rápido."
+      },
+      {
+        "title": "Observabilidad",
+        "description": "Logs y monitoreo para detectar problemas temprano."
+      }
+    ]
+  }
+}
