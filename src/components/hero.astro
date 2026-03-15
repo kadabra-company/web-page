@@ -1,0 +1,76 @@
+---
+const {
+    badge = "New",
+    badgeText = "Disponible: proyectos a medida 2026",
+    headline,
+    highlight = "Kadabra",
+    subheadline,
+    primaryCta,
+    secondaryCta,
+} = Astro.props;
+---
+
+<section class="mt-14">
+    <div
+        class="relative overflow-hidden rounded-2xl border border-(--border) bg-(--surface) p-8 md:p-12"
+    >
+        <!-- Background: glow + grid -->
+        <div
+            class="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full blur-3xl"
+            style="background: var(--glow);"
+        >
+        </div>
+
+        <div
+            class="pointer-events-none absolute inset-0 opacity-25 mask-[radial-gradient(ellipse_at_top,black,transparent_60%)]"
+        >
+            <div
+                class="h-full w-full"
+                style="background-image: linear-gradient(to right, color-mix(in oklab, white 10%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, white 10%, transparent) 1px, transparent 1px); background-size: 48px 48px;"
+            >
+            </div>
+        </div>
+
+        <div class="relative">
+            <!-- Badge -->
+            <a
+                href={secondaryCta?.href ?? "#"}
+                class="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--surface-2) px-3 py-1 text-xs text-(--muted) hover:text-(--text)"
+            >
+                <span
+                    class="rounded-full bg-(--accent) px-2 py-0.5 text-[11px] font-semibold text-(--kd-black)"
+                >
+                    {badge}
+                </span>
+                <span>{badgeText}</span>
+            </a>
+
+            <h1 class="mt-6 text-4xl font-semibold tracking-tight md:text-6xl">
+                {headline}
+                <span class="text-(--accent)">{highlight}</span>
+            </h1>
+
+            <p class="mt-4 max-w-2xl text-lg leading-relaxed text-(--muted)">
+                {subheadline}
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a
+                    class="rounded-lg bg-(--accent) px-4 py-2 text-sm font-semibold text-(--kd-black)
+                 hover:bg-(--accent-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
+                    href={primaryCta.href}
+                >
+                    {primaryCta.label}
+                </a>
+
+                <a
+                    class="rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-semibold
+                 hover:bg-(--surface-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/30"
+                    href={secondaryCta.href}
+                >
+                    {secondaryCta.label}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

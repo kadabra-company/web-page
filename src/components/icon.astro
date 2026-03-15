@@ -1,0 +1,102 @@
+---
+const { name, class: className = "h-5 w-5" } = Astro.props;
+---
+
+{
+    name === "menu" && (
+        <svg
+            class={className}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+        </svg>
+    )
+}
+
+{
+    name === "close" && (
+        <svg
+            class={className}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M18 6 6 18" />
+            <path d="M6 6l12 12" />
+        </svg>
+    )
+}
+
+{
+    name === "sun" && (
+        <svg
+            class={className}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="M4.93 4.93l1.41 1.41" />
+            <path d="M17.66 17.66l1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="M4.93 19.07l1.41-1.41" />
+            <path d="M17.66 6.34l1.41-1.41" />
+        </svg>
+    )
+}
+
+{
+    name === "moon" && (
+        <svg
+            class={className}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M12 3a7.5 7.5 0 1 0 9 9 6.5 6.5 0 0 1-9-9Z" />
+        </svg>
+    )
+}
+
+{
+    name === "globe" && (
+        <svg
+            class={className}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z" />
+            <path d="M2 12h20" />
+            <path d="M12 2a15.3 15.3 0 0 1 0 20" />
+            <path d="M12 2a15.3 15.3 0 0 0 0 20" />
+        </svg>
+    )
+}

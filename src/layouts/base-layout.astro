@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import ThemeScript from "../components/theme-script.astro";
-
 const { title = "kadabra", description, lang = "es" } = Astro.props;
 ---
 
@@ -14,7 +13,6 @@ const { title = "kadabra", description, lang = "es" } = Astro.props;
         <title>{title}</title>
         {description && <meta name="description" content={description} />}
     </head>
-
     <body class="min-h-dvh antialiased">
         <slot />
     </body>

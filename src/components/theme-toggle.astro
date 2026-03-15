@@ -1,33 +1,65 @@
 ---
+import Icon from "./icon.astro";
 const label = "Cambiar tema";
 ---
 
 <button
     type="button"
     aria-label={label}
-    class="rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted)
+    class="inline-flex items-center justify-center rounded-lg border border-(--border) bg-(--surface) p-2 text-(--muted)
          hover:bg-(--surface-2) hover:text-(--text)
          focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
     data-theme-toggle
 >
-    Tema
+    <span data-theme-icon-sun class="hidden">
+        <Icon name="sun" class="h-5 w-5" />
+    </span>
+    <span data-theme-icon-moon class="hidden">
+        <Icon name="moon" class="h-5 w-5" />
+    </span>
 </button>
 
 <script is:inline>
     (() => {
-        const STORAGE_KEY = "kadabra.theme";
-        const btn = document.querySelector("[data-theme-toggle]");
+        // Encuentra SOLO el botón que pertenece a ESTE componente
+        const root = document.currentScript?.previousElementSibling;
+        const btn = root && root.matches?.("[data-theme-toggle]") ? root : null;
         if (!btn) return;
 
+        const STORAGE_KEY = "kadabra.theme";
+
+        const sun = btn.querySelector("[data-theme-icon-sun]");
+        const moon = btn.querySelector("[data-theme-icon-moon]");
+        if (!sun || !moon) return;
+
         const getTheme = () => document.documentElement.dataset.theme || "dark";
+
+        const syncIcon = () => {
+            const t = getTheme();
+            if (t === "light") {
+                sun.classList.remove("hidden");
+                moon.classList.add("hidden");
+            } else {
+                moon.classList.remove("hidden");
+                sun.classList.add("hidden");
+            }
+        };
+
         const setTheme = (t) => {
             document.documentElement.dataset.theme = t;
             localStorage.setItem(STORAGE_KEY, t);
+            syncIcon();
+            // avisa a otras instancias para que actualicen su icono
+            window.dispatchEvent(new Event("kadabra:theme"));
         };
+
+        syncIcon();
 
         btn.addEventListener("click", () => {
             const next = getTheme() === "dark" ? "light" : "dark";
             setTheme(next);
         });
+
+        window.addEventListener("kadabra:theme", syncIcon);
     })();
 </script>

@@ -1,0 +1,16 @@
+---
+import HomePage from "../home-page.astro";
+import { defaultLocale, locales, homeByLocale } from "../../i18n/locales";
+
+export function getStaticPaths() {
+    return locales.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+// Si llega algo inesperado, caemos al default
+const locale = locales.includes(lang) ? lang : defaultLocale;
+const data = homeByLocale[locale];
+---
+
+<HomePage locale={locale} data={data} />

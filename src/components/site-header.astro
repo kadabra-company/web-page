@@ -1,46 +1,181 @@
 ---
 import ThemeToggle from "./theme-toggle.astro";
+import Icon from "./icon.astro";
+import { defaultLocale } from "../i18n/locales";
 
-const { locale = "es", nav } = Astro.props;
+const { locale = defaultLocale, nav } = Astro.props;
 
 const otherLocale = locale === "es" ? "en" : "es";
-const otherHref = otherLocale === "es" ? "/es" : "/en";
+const base = `/${locale}`;
+const otherHref = `/${otherLocale}`;
+
+// Slugs por idioma (para que no tengas que hardcodear /es/...)
+const slugs =
+    locale === "es"
+        ? {
+              services: "servicios",
+              portfolio: "portafolio",
+              contact: "contacto",
+          }
+        : { services: "services", portfolio: "portfolio", contact: "contact" };
+
+const links = [
+    { label: nav.services, href: `${base}/${slugs.services}` },
+    { label: nav.portfolio, href: `${base}/${slugs.portfolio}` },
+    { label: nav.contact, href: `${base}/${slugs.contact}` },
+];
+
+const menuId = `mobile-menu-${locale}`;
 ---
 
-<header class="flex items-center justify-between">
-    <a
-        class="text-lg font-semibold tracking-tight"
-        href={locale === "es" ? "/es" : "/en"}
-    >
+<header class="relative flex items-center justify-between">
+    <a class="text-lg font-semibold tracking-tight" href={base}>
         {nav.brand}
     </a>
 
-    <div class="flex items-center gap-3">
-        <nav class="hidden items-center gap-4 text-sm md:flex">
-            <a
-                class="text-(--muted) hover:text-(--text)"
-                href={locale === "es" ? "/es/servicios" : "/en/services"}
-                >{nav.services}</a
-            >
-            <a
-                class="text-(--muted) hover:text-(--text)"
-                href={locale === "es" ? "/es/portafolio" : "/en/portfolio"}
-                >{nav.portfolio}</a
-            >
-            <a
-                class="text-(--muted) hover:text-(--text)"
-                href={locale === "es" ? "/es/contacto" : "/en/contact"}
-                >{nav.contact}</a
-            >
+    <!-- Desktop nav -->
+    <div class="hidden items-center gap-2 md:flex">
+        <nav class="flex items-center gap-4 text-sm">
+            {
+                links.map((l) => (
+                    <a class="text-(--muted) hover:text-(--text)" href={l.href}>
+                        {l.label}
+                    </a>
+                ))
+            }
         </nav>
 
+        <!-- Language -->
         <a
-            class="rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted) hover:bg-(--surface-2) hover:text-(--text)"
+            class="inline-flex items-center gap-2 rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted)
+             hover:bg-(--surface-2) hover:text-(--text)"
             href={otherHref}
+            aria-label="Cambiar idioma"
         >
-            {otherLocale.toUpperCase()}
+            <Icon name="globe" class="h-4 w-4" />
+            <span>{otherLocale.toUpperCase()}</span>
         </a>
 
         <ThemeToggle />
     </div>
+
+    <!-- Mobile actions -->
+    <div class="flex items-center gap-2 md:hidden">
+        <ThemeToggle />
+
+        <!-- Language -->
+        <a
+            class="inline-flex items-center gap-2 rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted)
+             hover:bg-(--surface-2) hover:text-(--text)"
+            href={otherHref}
+            aria-label="Cambiar idioma"
+        >
+            <Icon name="globe" class="h-4 w-4" />
+            <span>{otherLocale.toUpperCase()}</span>
+        </a>
+
+        <!-- Menu button -->
+        <button
+            type="button"
+            class="inline-flex items-center justify-center rounded-lg border border-(--border) bg-(--surface) p-2 text-(--muted)
+             hover:bg-(--surface-2) hover:text-(--text)
+             focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
+            aria-controls={menuId}
+            aria-expanded="false"
+            aria-label="Abrir menú"
+            data-mobile-menu-button
+        >
+            <span data-icon-menu>
+                <Icon name="menu" class="h-5 w-5" />
+            </span>
+            <span class="hidden" data-icon-close>
+                <Icon name="close" class="h-5 w-5" />
+            </span>
+        </button>
+    </div>
+
+    <!-- Mobile panel -->
+    <div
+        id={menuId}
+        class="absolute right-0 top-12 hidden w-64 overflow-hidden rounded-xl border border-(--border) bg-(--bg) shadow-lg"
+        data-mobile-menu
+    >
+        <div class="p-2">
+            {
+                links.map((l) => (
+                    <a
+                        class="block rounded-lg px-3 py-2 text-sm text-(--text) hover:bg-(--surface-2)"
+                        href={l.href}
+                        data-mobile-menu-link
+                    >
+                        {l.label}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+
+    <script is:inline>
+        (() => {
+            const header = document.currentScript?.closest("header");
+            if (!header) return;
+
+            const btn = header.querySelector("[data-mobile-menu-button]");
+            const menu = header.querySelector("[data-mobile-menu]");
+            const iconMenu = header.querySelector("[data-icon-menu]");
+            const iconClose = header.querySelector("[data-icon-close]");
+
+            if (!btn || !menu || !iconMenu || !iconClose) return;
+
+            const setExpanded = (expanded) => {
+                btn.setAttribute("aria-expanded", expanded ? "true" : "false");
+                btn.setAttribute(
+                    "aria-label",
+                    expanded ? "Cerrar menú" : "Abrir menú",
+                );
+
+                if (expanded) {
+                    iconMenu.classList.add("hidden");
+                    iconClose.classList.remove("hidden");
+                } else {
+                    iconMenu.classList.remove("hidden");
+                    iconClose.classList.add("hidden");
+                }
+            };
+
+            const close = () => {
+                menu.classList.add("hidden");
+                setExpanded(false);
+            };
+
+            const open = () => {
+                menu.classList.remove("hidden");
+                setExpanded(true);
+            };
+
+            const toggle = () => {
+                const expanded = btn.getAttribute("aria-expanded") === "true";
+                expanded ? close() : open();
+            };
+
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                toggle();
+            });
+
+            menu.querySelectorAll("[data-mobile-menu-link]").forEach((a) => {
+                a.addEventListener("click", () => close());
+            });
+
+            document.addEventListener("click", (e) => {
+                const target = e.target;
+                if (!(target instanceof Node)) return;
+                if (!header.contains(target)) close();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") close();
+            });
+        })();
+    </script>
 </header>
