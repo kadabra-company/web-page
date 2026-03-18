@@ -1,6 +1,6 @@
 ---
-import ThemeToggle from "./theme-toggle.astro";
-import Icon from "./icon.astro";
+import AppThemeToggle from "./app-theme-toggle.astro";
+import AppIcon from "./app-icon.astro";
 import { defaultLocale } from "../i18n/locales";
 
 const { locale = defaultLocale, nav } = Astro.props;
@@ -17,7 +17,11 @@ const slugs =
               portfolio: "portafolio",
               contact: "contacto",
           }
-        : { services: "services", portfolio: "portfolio", contact: "contact" };
+        : {
+              services: "services",
+              portfolio: "portfolio",
+              contact: "contact",
+          };
 
 const links = [
     { label: nav.services, href: `${base}/${slugs.services}` },
@@ -52,17 +56,15 @@ const menuId = `mobile-menu-${locale}`;
             href={otherHref}
             aria-label="Cambiar idioma"
         >
-            <Icon name="globe" class="h-4 w-4" />
+            <AppIcon name="globe" class="h-4 w-4" />
             <span>{otherLocale.toUpperCase()}</span>
         </a>
 
-        <ThemeToggle />
+        <AppThemeToggle />
     </div>
 
     <!-- Mobile actions -->
     <div class="flex items-center gap-2 md:hidden">
-        <ThemeToggle />
-
         <!-- Language -->
         <a
             class="inline-flex items-center gap-2 rounded-lg border border-(--border) bg-(--surface) px-3 py-2 text-sm text-(--muted)
@@ -70,9 +72,11 @@ const menuId = `mobile-menu-${locale}`;
             href={otherHref}
             aria-label="Cambiar idioma"
         >
-            <Icon name="globe" class="h-4 w-4" />
+            <AppIcon name="globe" class="h-4 w-4" />
             <span>{otherLocale.toUpperCase()}</span>
         </a>
+
+        <AppThemeToggle />
 
         <!-- Menu button -->
         <button
@@ -86,10 +90,10 @@ const menuId = `mobile-menu-${locale}`;
             data-mobile-menu-button
         >
             <span data-icon-menu>
-                <Icon name="menu" class="h-5 w-5" />
+                <AppIcon name="menu" class="h-5 w-5" />
             </span>
             <span class="hidden" data-icon-close>
-                <Icon name="close" class="h-5 w-5" />
+                <AppIcon name="close" class="h-5 w-5" />
             </span>
         </button>
     </div>

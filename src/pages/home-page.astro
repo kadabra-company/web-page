@@ -1,17 +1,23 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
-import SiteHeader from "../components/site-header.astro";
+import AppHeader from "../components/app-header.astro";
+import type { THome, Locale } from "../i18n/types";
 
-const { locale, data } = Astro.props;
+type Props = {
+    locale: Locale;
+    data: THome;
+};
+
+const { locale, data } = Astro.props as Props;
 ---
 
 <BaseLayout
-    title={data.seo.title}
-    description={data.seo.description}
+    title={data.general.title}
+    description={data.general.description}
     lang={locale}
 >
     <main class="mx-auto max-w-6xl px-6 py-10">
-        <SiteHeader locale={locale} nav={data.nav} />
+        <AppHeader locale={locale} nav={data.navigation} />
 
         <section class="mt-14">
             <h1 class="text-4xl font-semibold tracking-tight md:text-6xl">
@@ -23,16 +29,13 @@ const { locale, data } = Astro.props;
 
             <div class="mt-8 flex flex-wrap gap-3">
                 <a
-                    class="rounded-lg bg-(--accent) px-4 py-2 text-sm font-medium text-(--kd-black)
-                 hover:bg-(--accent-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/40"
+                    class="rounded-lg bg-(--accent) px-4 py-2 text-sm font-medium text-(--kd-black)"
                     href={data.hero.primaryCta.href}
                 >
                     {data.hero.primaryCta.label}
                 </a>
-
                 <a
-                    class="rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-medium
-                 hover:bg-(--surface-2) focus:outline-none focus:ring-2 focus:ring-(--accent)/30"
+                    class="rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-medium"
                     href={data.hero.secondaryCta.href}
                 >
                     {data.hero.secondaryCta.label}
@@ -78,11 +81,5 @@ const { locale, data } = Astro.props;
                 }
             </div>
         </section>
-
-        <footer
-            class="mt-20 border-t border-(--border) pt-8 text-sm text-(--muted)"
-        >
-            © {new Date().getFullYear()} Kadabra Company
-        </footer>
     </main>
 </BaseLayout>

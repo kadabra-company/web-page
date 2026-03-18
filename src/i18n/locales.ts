@@ -1,12 +1,11 @@
 import homeEs from "../data/home.es.json";
 import homeEn from "../data/home.en.json";
+import type { THome, Locale } from "./types";
 
-export const defaultLocale = "es" as const;
+export const defaultLocale: Locale = "es";
+export const locales: Locale[] = ["es", "en"];
 
-export const locales = ["es", "en"] as const;
-export type Locale = (typeof locales)[number];
-
-export const homeByLocale: Record<Locale, typeof homeEs> = {
-  es: homeEs,
-  en: homeEn
+export const homeByLocale: Record<Locale, THome> = {
+  es: homeEs as THome,
+  en: homeEn as THome
 };

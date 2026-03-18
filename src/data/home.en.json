@@ -1,9 +1,9 @@
 {
-  "seo": {
+  "general": {
     "title": "kadabra — Custom software engineering",
     "description": "We build custom software: web, mobile, and desktop applications. Engineering focused on delivery, quality, and scalability."
   },
-  "nav": {
+  "navigation": {
     "brand": "kadabra",
     "services": "Services",
     "portfolio": "Portfolio",

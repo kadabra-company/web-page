@@ -1,9 +1,9 @@
 {
-  "seo": {
+  "general": {
     "title": "kadabra — Ingeniería de software a medida",
     "description": "Construimos software a medida: aplicaciones web, móviles y de escritorio. Ingeniería enfocada en entrega, calidad y escalabilidad."
   },
-  "nav": {
+  "navigation": {
     "brand": "kadabra",
     "services": "Servicios",
     "portfolio": "Portafolio",
