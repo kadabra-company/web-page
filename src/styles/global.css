@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
-/* ...deja tus tokens existentes arriba... */
+/* Kadabra base tokens (brand palette) */
+:root {
+  /* Neutrals (K palette) */
+  --kd-slate: #4F5B73;
+  --kd-slate-light: #7787A6;
+
+  /* Brand */
+  --kd-green: #15BF8F;
+  --kd-green-dark: #12A67C;
+
+  /* Black */
+  --kd-black: #0D0D0D;
+}
 
 /* Dark (default) */
 :root,
